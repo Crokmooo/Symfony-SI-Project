@@ -19,13 +19,13 @@ class ProductController extends AbstractController {
         ]);
     }
 
-    #[Route('/products', methods: 'GET')]
+    #[Route('/getProducts', methods: 'GET')]
     public function getProducts(ProductRepository $productRepository): JsonResponse {
         $products = $productRepository->findAll();
         return $this->json($products);
     }
 
-    #[Route('/products', methods: 'POST')]
+    #[Route('/createProduct', methods: 'POST')]
     public function createProduct(Request $request, EntityManagerInterface $em): JsonResponse {
         $data = json_decode($request->getContent(), true);
         $product = new Product();
